@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Insights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen p-6">
+    <div class="max-w-4xl mx-auto space-y-6">
+        <h1 class="text-4xl font-bold text-green-400 animate-pulse">Dashboard Storytelling</h1>
+        <p class="text-gray-300">Explore the deeper meaning behind each section of the Power BI dashboard.</p>
+
+        <!-- Tabs -->
+        <div class="flex space-x-4 mt-6">
+            <button onclick="showTab('Overview')" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Overview</button>
+            <button onclick="showTab('Maps')" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Maps of cyber threats</button>
+            <button onclick="showTab('Security')" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Security</button>
+            <button onclick="showTab('Response')" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Response</button>
+            <button onclick="showTab('Sources')" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Data Sources</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="overview" class="tab-content">
+            <h2 class="text-2xl font-semibold text-blue-400 mt-4">Overview</h2>
+            <p class="mt-2">This dashboard helps visualize cyber threats targeting Malaysian users between 18 to 60. It summarizes key metrics and trends in an easy-to-understand format by using year, month and date filter at the top of the dashboard.</p></n>
+            <p></p>
+            <h3><br>Terms that user need to know:</h3><br>
+            <p>-Data Compromised often referred to as a data breach, is the unauthorized access, acquisition, disclosure, or use of sensitive data. This can involve the exposure, theft, or alteration of information that should be kept private or secure. It typically occurs when someone bypasses security measures and gains unauthorized access to a system or network.</p><br>
+            <p>-A zero-day exploit is a type of cyberattack that takes advantage of a software vulnerability that is not known to the company that developed it yet, meaning they haven't released a patch for it. Basically, it's an attack that occurs on the very first day that the vulnerability is discovered. The term "zero-day" means that the software or hardware seller has no time to fix the problem before it starts being taken advantage of.</p><br>
+            <p>A mitigation method refers to actions taken to reduce the severity, impact, or likelihood of a negative event or condition.</p>
+            <p>Outcome is to determine weather the company or individual manage to prevent and stop the cyber attack or not.</p>
+        </div>
+
+        <div id="Maps" class="tab-content hidden">
+            <h2 class="text-2xl font-semibold text-blue-400 mt-4">Maps of Type of Cyber Threats That Happened in 2023 and 2024 Over the Country</h2>
+        <br><p>-Canada, Germany and Australia both have been color orange because all three countries have the most amount of malware happened.<br></p> 
+        <p>-Attacker IP address that came from Canada is 1310 and Germany is 1299 while Australia came in third place with 1254<br></p>
+        <p>-Sum of data compromised in GB that hacker got from Canada is 65508.95 GB, in Germay 64220.98 GB but in Australia, 61791.84 GB<br></p>
+        <p>-Sum of the response time in handling this type of cyber threat in Germany is 117412 minutes, Canada is 120844 minutes while in Australia 114347 minutes.<br></p>
+        <p>-One of the first target system that hacker targeted in all three countries are API.<br></p>
+        <p>-To solve this problem, the first thing they do would be blocking the IP<br></p>
+
+        <br><br>
+        <br><p>-USA and China both have been color light blue because both countries have the most amount of brute-force happened.<br></p> 
+        <p>-Attacker IP address that came from USA is 1331 while China have 1313<br></p>
+        <p>-Sum of data compromised in GB that hacker got from USA is 65382.28 GB but in China, 65777.79 GB<br></p>
+        <p>-Sum of the response time in handling this type of cyber threat in USA is 120011 minutes while in Australia 123061 minutes.<br></p>
+        <p>-One of the first target system that hacker targeted in both Canada and Australia is API.<br></p>
+        <p>-To solve this problem, the first thing they do would be blocking the IP<br></p>
+
+        <br><br>
+        <br><p>-Brazil and Russia both have been color dark blue because both countries have the most amount of DDoS happened.<br></p> 
+        <p>-Attacker IP address that came from Brazil is 1318 while Russia have 1312<br></p>
+        <p>-Sum of data compromised in GB that hacker got from Brazil is 65437.19 GB but in Russia, 66175.45 GB<br></p>
+        <p>-Sum of the response time in handling this type of cyber threat in Brazil is 121207 minutes while in Russia 118252 minutes.<br></p>
+        <p>-One of the first target system that hacker targeted in both Brazil and Russia is API.<br></p>
+        <p>-To solve this problem, the first thing they do would be blocking the IP<br></p>
+
+        <br><br>
+        <br><p>-India and France both have been color dark purple because both countries have the most amount of Zero-Day exploit happened.<br></p> 
+        <p>-Attacker IP address that came from India is 1286 while France have 1301<br></p>
+        <p>-Sum of data compromised in GB that hacker got from India is 64774.35 GB but in France, 64887.12 GB<br></p>
+        <p>-Sum of the response time in handling this type of cyber threat in India is 118417 minutes while in France 119685 minutes.<br></p>
+        <p>-One of the first target system that hacker targeted in both Brazil and Russia is API.<br></p>
+        <p>-To solve this problem, the first thing they do would be blocking the IP<br></p><br><br>
+       
+            <p class="mt-2">Interactive graphs that shows high-risk regions through heat map.</p>
+            <ul class="list-disc list-inside mt-2">
+                <li>Malware remains the top threat.</li>
+                <li>Attacks spike during public events or crises.</li>
+            </ul>
+        </div>
+
+        <div id="Security" class="tab-content hidden">
+            <h2 class="text-2xl font-semibold text-blue-400 mt-4">Security</h2>
+            <p class="mt-2">In this page, user can utilize the filter at the top of the page and display the output that they wanted</p><br>
+            <p>These filters help customize the view based on what matters most to the user.</p>
+
+            <ul class="list-disc list-inside mt-2">
+                <li>On average, massive amount of data is compromised per incident that highlighting the massive data risk associated with each attack.</li><br>
+                <li>It takes about 90 minutes to respond to threats, suggesting room for faster detection and action.</li><br>
+                <li>Approximately 100,000 attackers have been identified based on their IP addresses which indicating widespread and persistent threats all over the world.</li><br>
+                <li>Trend and Distribution Charts:</li><br>
+                <p>1. Number of Data Compromised in GB by month:</p><br>
+                <p>-This line chart shows a fluctuating but generally increasing trend in data compromises, peaking at 8.6k incidents in one month and dipping to 7.9k in another for all country. The shaded confidence band reflects prediction or uncertainty for future months.</p><br>
+                <p>2. Number of Attackers by User Role </p>
+                <p>-External entities are the most common threat actors, but Admins, Employees, and Contractors are also significant sources of attacks which pointing to possible insider threats</p><br>
+                <p>3. Average Attack Duration by Severity</p>
+                <p>Attack duration is not uniform but it fluctuates with severity. On average, high-severity attacks can last up to 157 minutes, while others may be shorter. These insights suggest that more severe attacks require longer detection and mitigation efforts, emphasizing the need for faster threat response systems.</p><br>
+                <li>When Attacks Occur: Time Analysis.</li><br>
+                <p>Count of Target System by Time of Day</p><br>
+                <p>-Interestingly, most of attacks occur during AM hours, suggesting cybercriminals exploit during early hours when teams might be less active or systems are more vulnerable</p><br>
+            </ul>
+        </div>
+
+        <div id="Response" class="tab-content hidden">
+            <h2 class="text-2xl font-semibold text-blue-400 mt-4">Response Strategies</h2>
+            <p class="mt-2">Based on the data, here are recommended actions for users and organizations:</p>
+            <ul class="list-disc list-inside mt-2">
+                <li>Update antivirus and firewalls regularly.</li>
+                <li>Do not click any uncategorized link shared in email or messages.</li>
+                <li>Report incidents to relevant authorities.</li>
+            </ul>
+        </div>
+
+        <div id="Sources" class="tab-content hidden">
+            <h2 class="text-2xl font-semibold text-blue-400 mt-4">Data Sources</h2>
+            <p class="mt-2">This dashboard pulls data from trusted cybersecurity feeds, including:</p>
+            <ul class="list-disc list-inside mt-2">
+                <li>Kaggle</li>
+            </ul>
+        </div>
+
+        <!-- Back link -->
+        <a href="index.html" class="inline-block mt-6 text-green-400 hover:underline">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

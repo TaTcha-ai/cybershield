@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CyberShield | Cyber Attack Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Navbar -->
+    <header class="flex justify-between items-center p-6 bg-gray-800 shadow-md">
+        <img src="logo.png" alt="CyberShield Logo" class="h-16 w-16">
+        <nav>
+            <a href="#about" class="mx-4 hover:text-green-400">About</a>
+            <a href="#features" class="mx-4 hover:text-green-400">Features</a>
+            <a href="#demo" class="mx-4 hover:text-green-400">Dashboard</a>
+            <a href="#contact" class="mx-4 hover:text-green-400">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="text-center py-20 bg-gray-900">
+        <h2 class="text-4xl font-bold mb-4">Cyber Attack Prediction</h2>
+        <p class="text-xl mb-6 max-w-xl mx-auto">
+            Empowering users with live cyber threat insights using smart analytics and data visualization.
+            No sign-up required. Accessible for all Malaysians aged 18 to 60.
+        </p>
+        <a href="#demo" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded">
+            CyberShield Dashboard
+        </a>
+    </section>
+
+    <!-- Search Section: Website Threat Checker -->
+    <section id="website-checker" class="py-20 px-6 bg-gray-800 text-center">
+        <h3 class="text-3xl font-bold mb-6 text-green-400">Check Website for Cyber Threats</h3>
+        <p class="mb-6">Enter the URL of the website you visited, and we'll check if it contains malware, adware, or other cyber threats.</p>
+
+        <!-- Search Form -->
+        <div class="max-w-md mx-auto">
+            <input id="website-url" type="text" class="w-full p-4 rounded-lg bg-gray-700 text-white placeholder-gray-400" placeholder="Enter Website URL" />
+            <button id="check-btn" class="mt-4 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+                Check for Threats
+            </button>
+        </div>
+
+        <!-- Result Section -->
+        <div id="result" class="mt-6 p-4 bg-gray-700 text-gray-300 rounded-lg hidden">
+            <p id="result-text" class="font-semibold text-lg mb-2"></p>
+            <ul id="threat-list" class="list-disc list-inside text-left max-w-md mx-auto text-red-400"></ul>
+        </div>
+
+        <!-- JavaScript for checking threats -->
+    <script>
+    const btn = document.getElementById('check-btn');
+    const resultBox = document.getElementById('result');
+    const resultText = document.getElementById('result-text');
+    const threatList = document.getElementById('threat-list');
+
+    btn.addEventListener('click', async () => {
+        const url = document.getElementById('website-url').value.trim();
+
+    if (!url) {
+        alert("Please enter a website URL.");
+        return;
+    }
+
+    try {
+        new URL(url); // Validate format
+    } catch {
+        alert("Please enter a valid URL.");
+        return;
+    }
+
+    resultBox.classList.remove('hidden');
+    resultText.textContent = `Scanning ${url}...`;
+    threatList.innerHTML = '';
+
+    try {
+        const response = await fetch('http://localhost:3000/check-url', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ url })
+        });
+
+        const data = await response.json();
+
+        if (data.safeBrowsing?.matches?.length > 0) {
+            const title = document.createElement('li');
+            title.innerHTML = `<strong>Google Safe Browsing:</strong>`;
+            threatList.appendChild(title);
+
+            data.safeBrowsing.matches.forEach(match => {
+                const li = document.createElement('li');
+                li.textContent = `• ${match.threatType} detected on ${match.platformType}`;
+                threatList.appendChild(li);
+            });
+        } else {
+            const li = document.createElement('li');
+            li.textContent = "• No threats found (Google Safe Browsing)";
+            threatList.appendChild(li);
+        }
+
+        const vtStats = data.virusTotalStats || {};
+        const malicious = vtStats.malicious || 0;
+        const suspicious = vtStats.suspicious || 0;
+
+        const vtSummary = document.createElement('li');
+        vtSummary.innerHTML = `<strong>VirusTotal:</strong> ${malicious} malicious, ${suspicious} suspicious`;
+        threatList.appendChild(vtSummary);
+
+        resultText.textContent = `Threat analysis completed for: ${url}`;
+    } catch (err) {
+        console.error(err);
+        alert("Error occurred while scanning. Please try again.");
+        resultText.textContent = "Scan failed.";
+    }
+});
+</script>
+
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6 bg-gray-900 text-center">
+        <h3 class="text-3xl font-bold mb-12 text-green-400">Features</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="bg-gray-800 p-6 rounded shadow-lg">
+                <h4 class="text-xl font-semibold mb-2">Data Visualization</h4>
+                <p>Visualize cyber threats with interactive dashboard.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded shadow-lg">
+                <h4 class="text-xl font-semibold mb-2">Prediction Algorithm</h4>
+                <p>Smart model predicts potential attacks using machine learning and historical data.</p>
+            </div>
+            <div class="bg-gray-800 p-6 rounded shadow-lg">
+                <h4 class="text-xl font-semibold mb-2">Public Access</h4>
+                <p>No login required. Educate and empower citizens to understand cyber threats.</p>
+            </div>
+        </div>
+    </section>
+
+        <!-- Dashboard storytelling Section -->
+    <section id="demo" class="py-20 px-6 bg-gray-800 text-center">
+        <h3 class="text-3xl font-bold mb-4 text-green-400 flex items-center justify-center gap-2">
+         Data Visualization
+    <a href="info.html"  title="Learn more about this dashboard">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+        </svg>
+    </a>
+</h3>
+
+        <p class="mb-8">This section will display charts, graphs and maps.</p>
+        <div class="bg-gray-700 p-8 rounded-lg max-w-4xl mx-auto">
+            <!-- Data Visualization Section -->
+        <div class="relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+            <iframe title="Power BI Dashboard" 
+                width="100%" 
+                height="100%" 
+                src="https://app.powerbi.com/view?r=eyJrIjoiOWI5NDE4OTgtYjZkZi00MDFiLTg2MjAtYTVkMTI1ZjQ1YWI3IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" 
+                frameborder="0" 
+                allowFullScreen="true" 
+                style="position: absolute; top: 0; left: 0;">
+            </iframe>
+        </div>
+        </div>
+    </section>
+
+        <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gray-900 text-center">
+        <h3 class="text-3xl font-bold mb-4 text-green-400">Contact</h3>
+        <p class="mb-6">Have questions or want to contribute? Reach out to the project lead.</p>
+        <a href="mailto:2022610424@student.uitm.edu.my" class="text-green-400 underline">2022610424@student.uitm.edu.my</a>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="text-center p-6 bg-gray-800">
+        <p class="text-sm text-gray-400">&copy; 2025 CyberShield | Final Year Project</p>
+    </footer>
+
+</body>
+</html>
